@@ -114,6 +114,49 @@
     });
   }
 
+  /* ---- Hero carousel -------------------------------------- */
+  var carousel = document.querySelector(".hero-carousel");
+  if (carousel) {
+    var slides = Array.prototype.slice.call(carousel.querySelectorAll(".hero-slide"));
+    var dotsWrap = carousel.querySelector(".hero-dots");
+    var prevBtn = carousel.querySelector(".hero-arrow.prev");
+    var nextBtn = carousel.querySelector(".hero-arrow.next");
+    var current = 0;
+    var timer = null;
+    var DELAY = 6000;
+
+    var dots = slides.map(function (s, i) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("aria-label", "Show slide " + (i + 1));
+      b.addEventListener("click", function () { go(i); restart(); });
+      if (dotsWrap) dotsWrap.appendChild(b);
+      return b;
+    });
+
+    function go(i) {
+      slides[current].classList.remove("active");
+      if (dots[current]) dots[current].classList.remove("active");
+      current = (i + slides.length) % slides.length;
+      slides[current].classList.add("active");
+      if (dots[current]) dots[current].classList.add("active");
+    }
+    function next() { go(current + 1); }
+    function prev() { go(current - 1); }
+    function start() { if (!prefersReduced && slides.length > 1 && !timer) timer = setInterval(next, DELAY); }
+    function stop() { if (timer) { clearInterval(timer); timer = null; } }
+    function restart() { stop(); start(); }
+
+    if (dots[0]) dots[0].classList.add("active");
+    if (nextBtn) nextBtn.addEventListener("click", function () { next(); restart(); });
+    if (prevBtn) prevBtn.addEventListener("click", function () { prev(); restart(); });
+    carousel.addEventListener("mouseenter", stop);
+    carousel.addEventListener("mouseleave", start);
+    carousel.addEventListener("focusin", stop);
+    carousel.addEventListener("focusout", start);
+    start();
+  }
+
   /* ---- Footer year ---------------------------------------- */
   var yearEl = document.getElementById("year");
   if (yearEl) yearEl.textContent = new Date().getFullYear();
