@@ -5,25 +5,26 @@
 
 /* ---- Design tokens ---------------------------------------- */
 :root {
-  /* Palette — Jwalin brand (royal blue / sky blue / green accent) */
-  --cream: #F5F9FC;
-  /* soft cool background */
-  --cream-deep: #E7F1F8;
+  /* Palette — Jwalin brand (royal blue / sky blue / soft cream / green accent) */
+  --cream: #FDF9F1;
+  /* soft cream background (brand) */
+  --cream-deep: #F7EFE0;
   --teal: #0F4C81;
-  /* royal blue — primary */
+  /* royal blue — primary (brand) */
   --teal-dark: #0A3A64;
   --coral: #2FA36C;
-  /* light green — hope accent / CTA */
+  /* light green — hope accent / CTA (brand) */
   --coral-dark: #24875A;
   --ink: #14314F;
   /* deep navy ink (text) */
   --ink-soft: #4A5E75;
   --mint: #E1F1F9;
   /* light sky wash */
-  --mint-deep: #C7E4F2;
+  --mint-deep: #6EC1E4;
+  /* sky blue (brand #6EC1E4) */
   --white: #FFFFFF;
-  --gold: #3AA0C4;
-  /* sky blue accent */
+  --gold: #6EC1E4;
+  /* sky blue accent (brand #6EC1E4) */
 
   /* Typography */
   --font-display: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -1539,6 +1540,103 @@ textarea {
     background: linear-gradient(180deg, rgba(12, 34, 58, 0.45) 0%, rgba(12, 34, 58, 0.88) 78%);
   }
 }
+
+/* Slide 1 — warm sunrise tint (soft blue + amber, per brand banner spec) */
+.hero-scrim--warm {
+  background:
+    linear-gradient(90deg, rgba(12, 34, 58, 0.88) 0%, rgba(15, 76, 129, 0.55) 45%, rgba(228, 138, 45, 0.28) 100%);
+}
+
+@media (max-width: 760px) {
+  .hero-scrim--warm {
+    background:
+      linear-gradient(180deg, rgba(15, 76, 129, 0.45) 0%, rgba(12, 34, 58, 0.88) 78%);
+  }
+}
+
+/* Slide 4 — even scrim: text sits in the standard centered position like
+   the other slides, so both panes get a uniform legibility wash */
+.hero-scrim--jewel {
+  background: linear-gradient(90deg, rgba(12, 34, 58, 0.68) 0%, rgba(12, 34, 58, 0.48) 55%, rgba(12, 34, 58, 0.25) 100%);
+}
+
+/* keep the heart above the text block */
+.hero-slide--jewel .hero-split-heart {
+  top: 16%;
+}
+
+@media (max-width: 760px) {
+  .hero-scrim--jewel {
+    background: linear-gradient(180deg, rgba(12, 34, 58, 0.30) 0%, rgba(12, 34, 58, 0.88) 78%);
+  }
+
+  .hero-slide--jewel .hero-split-heart {
+    top: 50%;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-scrim--jewel {
+    background: linear-gradient(180deg, rgba(12, 34, 58, 0.20) 0%, rgba(12, 34, 58, 0.88) 78%);
+  }
+}
+
+/* Slide 4 — split screen: Jwalin Jewels ⟷ child in therapy, heart of light */
+.hero-split {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+.hero-split-pane {
+  overflow: hidden;
+}
+
+.hero-split-pane img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.hero-split-heart {
+  position: absolute;
+  left: 50%;
+  top: 76%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+  color: #fff;
+  filter:
+    drop-shadow(0 0 14px rgba(255, 219, 155, 0.95))
+    drop-shadow(0 0 40px rgba(255, 200, 120, 0.8))
+    drop-shadow(0 0 90px rgba(255, 190, 110, 0.6));
+  animation: heartglow 2.8s ease-in-out infinite alternate;
+}
+
+@keyframes heartglow {
+  from {
+    transform: translate(-50%, -50%) scale(1);
+  }
+
+  to {
+    transform: translate(-50%, -50%) scale(1.12);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero-split-heart {
+    animation: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  .hero-split {
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr 1fr;
+  }
+}
+
 
 .hero-slide-inner {
   position: relative;
