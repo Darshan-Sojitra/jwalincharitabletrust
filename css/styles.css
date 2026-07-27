@@ -332,6 +332,7 @@ strong {
   justify-content: space-between;
   gap: 1rem;
   min-height: 86px;
+  max-width: 1280px;
 }
 
 .brand {
@@ -339,6 +340,7 @@ strong {
   align-items: center;
   gap: 0.65rem;
   text-decoration: none;
+  flex: 0 0 auto;
 }
 
 .brand-mark {
@@ -373,15 +375,20 @@ strong {
 
 .primary-nav {
   display: flex;
+  flex: 1 1 auto;
+  justify-content: flex-end;
+  min-width: 0;
 }
 
 .nav-list {
   display: flex;
   align-items: center;
-  gap: 0.25rem;
+  justify-content: flex-end;
+  gap: 0.2rem;
   list-style: none;
   margin: 0;
   padding: 0;
+  width: 100%;
 }
 
 .nav-list a:not(.btn),
@@ -393,12 +400,37 @@ strong {
   font-size: 0.98rem;
   color: var(--ink);
   text-decoration: none;
-  padding: 0.55rem 0.8rem;
+  white-space: nowrap;
+  padding: 0.55rem 0.7rem;
   border-radius: 999px;
   background: none;
   border: 0;
   cursor: pointer;
   font-family: var(--font-body);
+}
+
+@media (max-width: 1180px) and (min-width: 961px) {
+  .header-inner {
+    gap: 0.6rem;
+  }
+
+  .brand-logo {
+    height: 62px;
+  }
+
+  .nav-list {
+    gap: 0.05rem;
+  }
+
+  .nav-list a:not(.btn),
+  .dropdown-toggle {
+    font-size: 0.9rem;
+    padding-inline: 0.45rem;
+  }
+
+  .nav-cta .btn {
+    padding-inline: 0.75rem;
+  }
 }
 
 .nav-list a:not(.btn):hover,
@@ -1453,7 +1485,7 @@ textarea {
   display: block;
 }
 
-@media (max-width: 100px) {
+@media (max-width: 600px) {
   .brand-logo {
     height: 56px;
   }
