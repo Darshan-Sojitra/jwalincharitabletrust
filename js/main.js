@@ -3,6 +3,32 @@
 (function () {
   "use strict";
 
+  /* ---- Page loader ---------------------------------------- */
+  var pageLoader = document.createElement("div");
+  pageLoader.className = "page-loader";
+  pageLoader.setAttribute("role", "status");
+  pageLoader.setAttribute("aria-live", "polite");
+  pageLoader.innerHTML = '<div class="loader-mark" aria-hidden="true"></div><span>Loading</span>';
+  document.body.classList.add("is-loading");
+  document.body.appendChild(pageLoader);
+
+  function finishLoading() {
+    document.body.classList.remove("is-loading");
+    document.body.classList.add("is-loaded");
+    window.setTimeout(function () {
+      if (pageLoader && pageLoader.parentNode) pageLoader.parentNode.removeChild(pageLoader);
+    }, 450);
+  }
+
+  if (document.readyState === "complete") {
+    window.setTimeout(finishLoading, 350);
+  } else {
+    window.addEventListener("load", function () {
+      window.setTimeout(finishLoading, 350);
+    });
+  }
+  window.setTimeout(finishLoading, 1800);
+
   /* ---- Mobile navigation toggle --------------------------- */
   var navToggle = document.querySelector(".nav-toggle");
   var primaryNav = document.getElementById("primary-nav");
@@ -75,8 +101,18 @@
   /* ---- Reveal on scroll & animated counters --------------- */
   var prefersReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
+  Array.prototype.slice.call(document.querySelectorAll(
+    "main > section:not(.hero-carousel), .section-head, .card, .feature, .stat, .split-media, .form-card"
+  )).forEach(function (el) {
+    if (!el.classList.contains("reveal")) el.classList.add("reveal");
+  });
+
   var reveals = Array.prototype.slice.call(document.querySelectorAll(".reveal"));
   var counters = Array.prototype.slice.call(document.querySelectorAll("[data-count]"));
+
+  reveals.forEach(function (el, i) {
+    el.style.setProperty("--reveal-delay", Math.min(i % 8, 5) * 70 + "ms");
+  });
 
   function animateCount(el) {
     var target = parseFloat(el.getAttribute("data-count")) || 0;
@@ -124,6 +160,11 @@
     var current = 0;
     var timer = null;
     var DELAY = 6000;
+    var swipeStartX = 0;
+    var swipeStartY = 0;
+    var swipeActive = false;
+    var swipePointerId = null;
+    var SWIPE_THRESHOLD = 45;
 
     var dots = slides.map(function (s, i) {
       var b = document.createElement("button");
@@ -154,6 +195,37 @@
     carousel.addEventListener("mouseleave", start);
     carousel.addEventListener("focusin", stop);
     carousel.addEventListener("focusout", start);
+
+    carousel.addEventListener("pointerdown", function (e) {
+      if (e.pointerType === "mouse" || slides.length < 2) return;
+      swipeStartX = e.clientX;
+      swipeStartY = e.clientY;
+      swipeActive = true;
+      swipePointerId = e.pointerId;
+      stop();
+    }, { passive: true });
+
+    carousel.addEventListener("pointerup", function (e) {
+      if (!swipeActive || e.pointerId !== swipePointerId) return;
+      var deltaX = e.clientX - swipeStartX;
+      var deltaY = e.clientY - swipeStartY;
+      swipeActive = false;
+      swipePointerId = null;
+
+      if (Math.abs(deltaX) > SWIPE_THRESHOLD && Math.abs(deltaX) > Math.abs(deltaY) * 1.2) {
+        if (deltaX < 0) next();
+        else prev();
+      }
+      restart();
+    }, { passive: true });
+
+    carousel.addEventListener("pointercancel", function (e) {
+      if (!swipeActive || e.pointerId !== swipePointerId) return;
+      swipeActive = false;
+      swipePointerId = null;
+      restart();
+    }, { passive: true });
+
     start();
   }
 

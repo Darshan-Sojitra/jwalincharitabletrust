@@ -67,6 +67,58 @@ body {
   text-rendering: optimizeLegibility;
 }
 
+body.is-loading {
+  cursor: progress;
+}
+
+body.is-loading main,
+body.is-loading .site-footer {
+  opacity: 0;
+}
+
+body.is-loaded main,
+body.is-loaded .site-footer {
+  opacity: 1;
+  transition: opacity 0.45s ease;
+}
+
+.page-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  display: grid;
+  place-items: center;
+  gap: 0.9rem;
+  align-content: center;
+  background: var(--cream);
+  color: var(--teal-dark);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.loader-mark {
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  border: 3px solid rgba(110, 193, 228, 0.32);
+  border-top-color: var(--teal);
+  animation: loaderSpin 0.85s linear infinite;
+}
+
+body.is-loaded .page-loader {
+  opacity: 0;
+  visibility: hidden;
+}
+
+@keyframes loaderSpin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @media (min-width: 700px) {
   body {
     font-size: 1.125rem;
@@ -403,12 +455,15 @@ strong {
   white-space: nowrap;
   padding: 0.55rem 0.7rem;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(15, 76, 129, 0.12);
+  background: transparent;
+  border: 1px solid transparent;
   cursor: pointer;
   font-family: var(--font-body);
-  box-shadow: 0 8px 18px -18px rgba(20, 49, 79, 0.45);
-  transition: background-color 0.18s ease, border-color 0.18s ease, color 0.18s ease;
+  transition:
+    background-color 0.22s ease,
+    border-color 0.22s ease,
+    color 0.22s ease,
+    transform 0.18s ease;
 }
 
 @media (max-width: 1180px) and (min-width: 961px) {
@@ -437,15 +492,23 @@ strong {
 
 .nav-list a:not(.btn):hover,
 .dropdown-toggle:hover {
-  background: var(--mint);
-  border-color: rgba(15, 76, 129, 0.2);
+  background: rgba(218, 240, 229, 0.58);
+  border-color: transparent;
   color: var(--teal-dark);
+  transform: translateY(-1px);
+}
+
+.nav-list a:not(.btn):active,
+.dropdown-toggle:active {
+  transform: translateY(0);
+  transition-duration: 0.08s;
 }
 
 .nav-list a.active {
-  color: var(--teal-dark);
-  background: var(--mint);
-  border-color: rgba(15, 76, 129, 0.24);
+  color: var(--ink);
+  font-weight: 700;
+  background: transparent;
+  border-color: transparent;
 }
 
 /* Dropdown */
@@ -561,10 +624,16 @@ strong {
   .dropdown-toggle {
     width: 100%;
     justify-content: space-between;
-    padding: 0.85rem 0.9rem;
+    padding: 0.8rem 0.15rem;
     font-size: 1.05rem;
-    border-radius: 12px;
-    background: rgba(255, 255, 255, 0.68);
+    border-radius: 0;
+    background: transparent;
+    border-color: transparent;
+  }
+
+  .nav-list a:not(.btn):hover,
+  .dropdown-toggle:hover {
+    background: transparent;
   }
 
   .has-dropdown {
@@ -944,7 +1013,7 @@ strong {
 
 @media (max-width: 760px) {
   .journey-line {
-    left: 27px;
+    left: calc(clamp(1.1rem, 4vw, 2rem) + 28px);
   }
 
   .journey-node {
@@ -1458,13 +1527,16 @@ textarea {
 /* Reveal on scroll */
 .reveal {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transform: translateY(22px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+  transition-delay: var(--reveal-delay, 0ms);
+  will-change: opacity, transform;
 }
 
 .reveal.in {
   opacity: 1;
   transform: none;
+  will-change: auto;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -1476,6 +1548,10 @@ textarea {
     opacity: 1 !important;
     transform: none !important;
     transition: none !important;
+  }
+
+  .page-loader {
+    display: none !important;
   }
 
   .btn:hover,
@@ -1521,6 +1597,7 @@ textarea {
   position: relative;
   background: var(--ink);
   overflow: hidden;
+  touch-action: pan-y;
 }
 
 .hero-track {
