@@ -87,6 +87,37 @@
     }
   });
 
+  /* ---- Calm long reading sections ------------------------- */
+  Array.prototype.slice.call(document.querySelectorAll(".prose")).forEach(function (prose, index) {
+    var paragraphs = Array.prototype.slice.call(prose.querySelectorAll(":scope > p"));
+    if (paragraphs.length < 5 || prose.classList.contains("no-collapse")) return;
+
+    var id = "prose-more-" + index;
+    var extra = document.createElement("div");
+    extra.className = "prose-extra";
+    extra.id = id;
+
+    paragraphs.slice(3).forEach(function (p) {
+      extra.appendChild(p);
+    });
+
+    var button = document.createElement("button");
+    button.className = "text-toggle";
+    button.type = "button";
+    button.setAttribute("aria-expanded", "false");
+    button.setAttribute("aria-controls", id);
+    button.textContent = "Read more";
+
+    button.addEventListener("click", function () {
+      var open = prose.classList.toggle("expanded");
+      button.setAttribute("aria-expanded", open ? "true" : "false");
+      button.textContent = open ? "Show less" : "Read more";
+    });
+
+    prose.appendChild(extra);
+    prose.appendChild(button);
+  });
+
   /* ---- Header shadow on scroll ---------------------------- */
   var header = document.querySelector(".site-header");
   if (header) {
