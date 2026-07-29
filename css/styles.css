@@ -614,13 +614,17 @@ strong {
 }
 
 @media (max-width: 960px) {
+  .header-inner {
+    min-height: 74px;
+  }
+
   .nav-toggle {
     display: flex;
   }
 
   .primary-nav {
     position: fixed;
-    inset: 86px 0 auto 0;
+    inset: 74px 0 auto 0;
     background: var(--cream);
     border-bottom: 1px solid rgba(36, 59, 58, 0.1);
     box-shadow: var(--shadow);
@@ -630,7 +634,7 @@ strong {
   }
 
   .primary-nav.open {
-    max-height: calc(100vh - 86px);
+    max-height: calc(100vh - 74px);
     overflow-y: auto;
   }
 
@@ -1966,7 +1970,11 @@ textarea {
 
 @media (max-width: 600px) {
   .brand-logo {
-    height: 56px;
+    height: 48px;
+  }
+
+  .brand-name {
+    font-size: 1.12rem;
   }
 }
 
@@ -1976,7 +1984,7 @@ textarea {
   }
 
   .brand-name {
-    font-size: 1rem;
+    font-size: 1.06rem;
   }
 
   .brand-sub {
