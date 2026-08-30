@@ -217,6 +217,10 @@ strong {
   background: var(--mint);
 }
 
+.section--cream {
+  background: var(--cream);
+}
+
 .section--cream-deep {
   background: var(--cream-deep);
 }
@@ -370,6 +374,11 @@ strong {
   .btn-row .btn {
     width: 100%;
     justify-content: center;
+  }
+
+  .btn {
+    min-height: 48px;
+    text-align: center;
   }
 }
 
@@ -920,28 +929,21 @@ strong {
   .grid-4 {
     grid-template-columns: 1fr;
   }
-
-  .card p,
-  .feature p {
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-  }
 }
 
 .card {
   background: var(--white);
-  border: 1px solid rgba(36, 59, 58, 0.07);
+  border: 1px solid rgba(46, 125, 50, 0.1);
   border-radius: var(--radius-sm);
   padding: clamp(1.1rem, 3vw, 1.45rem);
-  box-shadow: 0 10px 28px -24px rgba(36, 59, 58, 0.55);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  box-shadow: 0 12px 30px -26px rgba(69, 48, 19, 0.55);
+  transition: transform 0.2s ease, box-shadow 0.2s ease, border-color 0.2s ease;
 }
 
 .card.hoverable:hover {
   transform: translateY(-3px);
-  box-shadow: 0 20px 36px -28px rgba(36, 59, 58, 0.65);
+  border-color: rgba(245, 164, 0, 0.35);
+  box-shadow: 0 22px 42px -30px rgba(69, 48, 19, 0.6);
 }
 
 .card h3 {
@@ -970,19 +972,19 @@ strong {
 }
 
 .card-icon.coral {
-  background: #D8F0E3;
+  background: #FFF0DF;
   color: var(--coral-dark);
 }
 
 .card-icon.gold {
-  background: #DCEFF8;
-  color: #216B87;
+  background: #FFF4C8;
+  color: #9A6200;
 }
 
 .home-actions {
   position: relative;
   z-index: 5;
-  background: var(--white);
+  background: rgba(255, 255, 255, 0.96);
   border-bottom: 1px solid rgba(46, 125, 50, 0.12);
   box-shadow: 0 16px 32px -32px rgba(20, 49, 79, 0.55);
 }
@@ -1000,7 +1002,7 @@ strong {
   color: var(--ink);
   text-decoration: none;
   border-right: 1px solid rgba(46, 125, 50, 0.12);
-  transition: background 0.2s ease, color 0.2s ease;
+  transition: background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
 .home-actions a:last-child {
@@ -1010,6 +1012,7 @@ strong {
 .home-actions a:hover {
   background: var(--mint);
   color: var(--teal-dark);
+  transform: translateY(-1px);
 }
 
 .home-actions span {
@@ -1023,6 +1026,7 @@ strong {
 .home-actions strong {
   font-family: var(--font-display);
   font-size: clamp(1.05rem, 2vw, 1.25rem);
+  line-height: 1.25;
 }
 
 .trust-proof {
@@ -1081,6 +1085,7 @@ strong {
   .home-actions a {
     border-right: 0;
     border-bottom: 1px solid rgba(46, 125, 50, 0.12);
+    padding-block: 1.05rem;
   }
 
   .home-actions a:last-child {
@@ -1115,13 +1120,15 @@ strong {
   background: rgba(255, 255, 255, 0.72);
   border: 1px solid rgba(46, 125, 50, 0.12);
   border-radius: var(--radius-sm);
-  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+  box-shadow: 0 14px 34px -30px rgba(69, 48, 19, 0.5);
+  transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
 }
 
 .path-card:hover {
   color: var(--ink);
   background: var(--white);
-  border-color: rgba(46, 125, 50, 0.24);
+  border-color: rgba(245, 164, 0, 0.34);
+  box-shadow: 0 22px 42px -32px rgba(69, 48, 19, 0.62);
   transform: translateY(-3px);
 }
 
@@ -1141,7 +1148,8 @@ strong {
 
 .path-card strong {
   font-family: var(--font-display);
-  font-size: 1.1rem;
+  font-size: 1.12rem;
+  line-height: 1.25;
   color: var(--ink);
 }
 
@@ -1306,13 +1314,14 @@ strong {
 /* ---- Journey path (homepage signature) -------------------- */
 .journey {
   position: relative;
+  overflow: hidden;
 }
 
 .journey-line {
   position: absolute;
   left: 50%;
-  top: 0;
-  bottom: 0;
+  top: clamp(8.5rem, 16vw, 12rem);
+  bottom: clamp(6rem, 11vw, 8rem);
   width: 2px;
   transform: translateX(-50%);
   background-image: linear-gradient(var(--mint-deep) 60%, transparent 0);
@@ -1328,6 +1337,9 @@ strong {
 
 .journey-step {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .journey-node {
@@ -1357,11 +1369,39 @@ strong {
 
 @media (max-width: 760px) {
   .journey-line {
-    left: calc(clamp(1.1rem, 4vw, 2rem) + 28px);
+    left: 50%;
+    top: 9.5rem;
+    bottom: 5.5rem;
   }
 
   .journey-node {
-    margin: 0 0 1rem;
+    margin: 0 auto 1rem;
+  }
+
+  .journey-step .card {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .journey .section-head {
+    margin-bottom: 1.7rem;
+  }
+
+  .journey-line {
+    top: 10.5rem;
+    bottom: 4.25rem;
+  }
+
+  .journey-node {
+    width: 54px;
+    height: 54px;
+    font-size: 1.08rem;
+  }
+
+  .journey-step {
+    max-width: 370px;
+    margin-inline: auto;
   }
 }
 
