@@ -5,26 +5,26 @@
 
 /* ---- Design tokens ---------------------------------------- */
 :root {
-  /* Palette — Jwalin brand (royal blue / sky blue / soft cream / green accent) */
-  --cream: #FDF9F1;
-  /* soft cream background (brand) */
-  --cream-deep: #F7EFE0;
-  --teal: #0F4C81;
-  /* royal blue — primary (brand) */
-  --teal-dark: #0A3A64;
-  --coral: #2FA36C;
-  /* light green — hope accent / CTA (brand) */
-  --coral-dark: #24875A;
-  --ink: #14314F;
-  /* deep navy ink (text) */
-  --ink-soft: #4A5E75;
-  --mint: #E1F1F9;
-  /* light sky wash */
-  --mint-deep: #6EC1E4;
-  /* sky blue (brand #6EC1E4) */
+  /* Palette — Jwalin brand (leaf green / flame orange / saffron / warm ivory) */
+  --cream: #FFF8ED;
+  /* warm ivory background */
+  --cream-deep: #FBEACD;
+  --teal: #2E7D32;
+  /* leaf green — primary */
+  --teal-dark: #1F5F2A;
+  --coral: #F36C05;
+  /* flame orange — CTA accent */
+  --coral-dark: #C94F00;
+  --ink: #21391F;
+  /* deep green ink (text) */
+  --ink-soft: #64715B;
+  --mint: #EAF5DE;
+  /* soft leaf wash */
+  --mint-deep: #F5A400;
+  /* saffron accent */
   --white: #FFFFFF;
-  --gold: #6EC1E4;
-  /* sky blue accent (brand #6EC1E4) */
+  --gold: #F5A400;
+  /* saffron accent */
 
   /* Typography */
   --font-display: "Poppins", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
@@ -35,9 +35,9 @@
   --radius: 20px;
   --radius-sm: 12px;
   --radius-lg: 32px;
-  --shadow: 0 18px 40px -24px rgba(36, 59, 58, 0.45);
-  --shadow-sm: 0 8px 22px -16px rgba(36, 59, 58, 0.5);
-  --ring: 0 0 0 3px rgba(15, 76, 129, 0.30);
+  --shadow: 0 18px 40px -24px rgba(69, 48, 19, 0.38);
+  --shadow-sm: 0 8px 22px -16px rgba(69, 48, 19, 0.42);
+  --ring: 0 0 0 3px rgba(245, 164, 0, 0.34);
 
   --space: clamp(3.5rem, 7vw, 6rem);
   /* vertical section rhythm */
@@ -103,7 +103,7 @@ body.is-loaded .site-footer {
   width: 46px;
   height: 46px;
   border-radius: 50%;
-  border: 3px solid rgba(110, 193, 228, 0.32);
+  border: 3px solid rgba(245, 164, 0, 0.28);
   border-top-color: var(--teal);
   animation: loaderSpin 0.85s linear infinite;
 }
@@ -378,7 +378,7 @@ strong {
   position: sticky;
   top: 0;
   z-index: 100;
-  background: rgba(245, 249, 252, 0.92);
+  background: rgba(255, 248, 237, 0.92);
   backdrop-filter: saturate(1.1) blur(8px);
   border-bottom: 1px solid rgba(36, 59, 58, 0.08);
   transition: box-shadow 0.25s ease;
@@ -506,7 +506,7 @@ strong {
 
 .nav-list a:not(.btn):hover,
 .dropdown-toggle:hover {
-  background: rgba(218, 240, 229, 0.58);
+  background: rgba(234, 245, 222, 0.78);
   border-color: transparent;
   color: var(--teal-dark);
   transform: translateY(-1px);
@@ -983,7 +983,7 @@ strong {
   position: relative;
   z-index: 5;
   background: var(--white);
-  border-bottom: 1px solid rgba(15, 76, 129, 0.1);
+  border-bottom: 1px solid rgba(46, 125, 50, 0.12);
   box-shadow: 0 16px 32px -32px rgba(20, 49, 79, 0.55);
 }
 
@@ -999,7 +999,7 @@ strong {
   padding: clamp(1rem, 2vw, 1.25rem);
   color: var(--ink);
   text-decoration: none;
-  border-right: 1px solid rgba(15, 76, 129, 0.1);
+  border-right: 1px solid rgba(46, 125, 50, 0.12);
   transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -1027,7 +1027,7 @@ strong {
 
 .trust-proof {
   background: var(--white);
-  border-block: 1px solid rgba(15, 76, 129, 0.1);
+  border-block: 1px solid rgba(46, 125, 50, 0.12);
 }
 
 .trust-proof-inner {
@@ -1069,7 +1069,7 @@ strong {
   }
 
   .home-actions a:nth-child(-n + 2) {
-    border-bottom: 1px solid rgba(15, 76, 129, 0.1);
+    border-bottom: 1px solid rgba(46, 125, 50, 0.12);
   }
 }
 
@@ -1080,7 +1080,7 @@ strong {
 
   .home-actions a {
     border-right: 0;
-    border-bottom: 1px solid rgba(15, 76, 129, 0.1);
+    border-bottom: 1px solid rgba(46, 125, 50, 0.12);
   }
 
   .home-actions a:last-child {
@@ -1113,7 +1113,7 @@ strong {
   color: var(--ink);
   text-decoration: none;
   background: rgba(255, 255, 255, 0.72);
-  border: 1px solid rgba(15, 76, 129, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.12);
   border-radius: var(--radius-sm);
   transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
 }
@@ -1121,7 +1121,7 @@ strong {
 .path-card:hover {
   color: var(--ink);
   background: var(--white);
-  border-color: rgba(15, 76, 129, 0.22);
+  border-color: rgba(46, 125, 50, 0.24);
   transform: translateY(-3px);
 }
 
@@ -1155,7 +1155,7 @@ strong {
   display: grid;
   max-width: 860px;
   margin-inline: auto;
-  border-top: 1px solid rgba(15, 76, 129, 0.14);
+  border-top: 1px solid rgba(46, 125, 50, 0.16);
 }
 
 .support-item {
@@ -1163,7 +1163,7 @@ strong {
   grid-template-columns: 58px 1fr;
   gap: 1rem;
   padding: 1.35rem 0;
-  border-bottom: 1px solid rgba(15, 76, 129, 0.14);
+  border-bottom: 1px solid rgba(46, 125, 50, 0.16);
 }
 
 .support-item h3 {
@@ -1180,7 +1180,7 @@ strong {
   display: grid;
   gap: 0.8rem;
   background: var(--white);
-  border: 1px solid rgba(15, 76, 129, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.12);
   border-radius: var(--radius);
   padding: clamp(1.2rem, 3vw, 1.6rem);
   box-shadow: var(--shadow-sm);
@@ -1191,7 +1191,7 @@ strong {
   justify-content: space-between;
   gap: 1rem;
   padding-bottom: 0.8rem;
-  border-bottom: 1px solid rgba(15, 76, 129, 0.1);
+  border-bottom: 1px solid rgba(46, 125, 50, 0.12);
 }
 
 .trust-panel div:last-child {
@@ -1221,7 +1221,7 @@ strong {
   text-align: center;
   padding: 1.3rem 1rem;
   background: var(--white);
-  border: 1px solid rgba(15, 76, 129, 0.1);
+  border: 1px solid rgba(46, 125, 50, 0.12);
   border-radius: var(--radius-sm);
   box-shadow: var(--shadow-sm);
 }
@@ -1277,7 +1277,7 @@ strong {
   padding: 1rem;
   border-radius: var(--radius-sm);
   background: rgba(255, 255, 255, 0.48);
-  border: 1px solid rgba(15, 76, 129, 0.08);
+  border: 1px solid rgba(46, 125, 50, 0.10);
 }
 
 .feature .check {
@@ -1508,7 +1508,7 @@ strong {
   height: 22px;
   margin-top: 3px;
   border-radius: 50%;
-  background: var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%230F4C81' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 14px no-repeat;
+  background: var(--mint) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='14' viewBox='0 0 24 24' fill='none' stroke='%232E7D32' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='20 6 9 17 4 12'/%3E%3C/svg%3E") center / 14px no-repeat;
 }
 
 /* ---- Page hero (inner pages) ------------------------------ */
@@ -1963,9 +1963,10 @@ textarea {
 
 /* ---- Brand logo (header) ---------------------------------- */
 .brand-logo {
-  height: 72px;
+  height: 78px;
   width: auto;
   display: block;
+  object-fit: contain;
 }
 
 @media (max-width: 600px) {
@@ -2067,32 +2068,32 @@ textarea {
 .hero-scrim {
   position: absolute;
   inset: 0;
-  background: linear-gradient(90deg, rgba(12, 34, 58, 0.90) 0%, rgba(12, 34, 58, 0.62) 42%, rgba(12, 34, 58, 0.15) 100%);
+  background: linear-gradient(90deg, rgba(33, 57, 31, 0.90) 0%, rgba(33, 57, 31, 0.62) 42%, rgba(33, 57, 31, 0.15) 100%);
 }
 
 @media (max-width: 760px) {
   .hero-scrim {
-    background: linear-gradient(180deg, rgba(12, 34, 58, 0.45) 0%, rgba(12, 34, 58, 0.88) 78%);
+    background: linear-gradient(180deg, rgba(33, 57, 31, 0.45) 0%, rgba(33, 57, 31, 0.88) 78%);
   }
 }
 
-/* Slide 1 — warm sunrise tint (soft blue + amber, per brand banner spec) */
+/* Slide 1 — warm sunrise tint (green + amber) */
 .hero-scrim--warm {
   background:
-    linear-gradient(90deg, rgba(12, 34, 58, 0.88) 0%, rgba(15, 76, 129, 0.55) 45%, rgba(228, 138, 45, 0.28) 100%);
+    linear-gradient(90deg, rgba(33, 57, 31, 0.88) 0%, rgba(46, 125, 50, 0.55) 45%, rgba(228, 138, 45, 0.28) 100%);
 }
 
 @media (max-width: 760px) {
   .hero-scrim--warm {
     background:
-      linear-gradient(180deg, rgba(15, 76, 129, 0.45) 0%, rgba(12, 34, 58, 0.88) 78%);
+      linear-gradient(180deg, rgba(46, 125, 50, 0.45) 0%, rgba(33, 57, 31, 0.88) 78%);
   }
 }
 
 /* Slide 4 — even scrim: text sits in the standard centered position like
    the other slides, so both panes get a uniform legibility wash */
 .hero-scrim--jewel {
-  background: linear-gradient(90deg, rgba(12, 34, 58, 0.68) 0%, rgba(12, 34, 58, 0.48) 55%, rgba(12, 34, 58, 0.25) 100%);
+  background: linear-gradient(90deg, rgba(33, 57, 31, 0.68) 0%, rgba(33, 57, 31, 0.48) 55%, rgba(33, 57, 31, 0.25) 100%);
 }
 
 /* keep the heart above the text block */
@@ -2102,7 +2103,7 @@ textarea {
 
 @media (max-width: 760px) {
   .hero-scrim--jewel {
-    background: linear-gradient(180deg, rgba(12, 34, 58, 0.30) 0%, rgba(12, 34, 58, 0.88) 78%);
+    background: linear-gradient(180deg, rgba(33, 57, 31, 0.30) 0%, rgba(33, 57, 31, 0.88) 78%);
   }
 
   .hero-slide--jewel .hero-split-heart {
@@ -2112,7 +2113,7 @@ textarea {
 
 @media (max-width: 760px) {
   .hero-scrim--jewel {
-    background: linear-gradient(180deg, rgba(12, 34, 58, 0.20) 0%, rgba(12, 34, 58, 0.88) 78%);
+    background: linear-gradient(180deg, rgba(33, 57, 31, 0.20) 0%, rgba(33, 57, 31, 0.88) 78%);
   }
 }
 
@@ -2265,7 +2266,7 @@ textarea {
 
 /* ---- Luxury with a Purpose (Jwalin Jewels) ---------------- */
 .luxury {
-  background: linear-gradient(135deg, #0C2238 0%, #123A5E 100%);
+  background: linear-gradient(135deg, #21391F 0%, #2E7D32 100%);
   color: #E6F0FA;
 }
 
@@ -2284,7 +2285,7 @@ textarea {
 }
 
 .luxury .split-media .img-ph {
-  background: linear-gradient(135deg, #2E8B82, #F2785C);
+  background: linear-gradient(135deg, #2E7D32, #F36C05);
   color: #fff;
 }
 
