@@ -218,7 +218,7 @@ def page_footer(prefix: str) -> str:
         <div class="footer-col"><h4>Get involved</h4><ul><li><a href="{prefix}donate.html">Donate</a></li><li><a href="{prefix}volunteer.html">Volunteer</a></li><li><a href="{prefix}our-contribution.html">Our Contribution</a></li><li><a href="{prefix}gallery.html">Gallery</a></li></ul></div>
         <div class="footer-col"><h4>Contact</h4><ul><li><a href="tel:+919558812094">Helpline: +91 9558812094</a></li><li><a href="mailto:info@cpchildindia.org">info@cpchildindia.org</a></li><li><a href="{prefix}contact.html">Visit / Location</a></li><li><a href="{prefix}blog.html">Blog &amp; Resources</a></li></ul></div>
       </div>
-      <div class="footer-bottom"><span>Â© <span id="year">2026</span> Jwalin Charitable Trust Â· cpchildindia.org</span><span><a href="#">Privacy Policy</a> Â· <a href="#">Terms &amp; Conditions</a></span></div>
+      <div class="footer-bottom"><span>© <span id="year">2026</span> Jwalin Charitable Trust · cpchildindia.org</span><span><a href="#">Privacy Policy</a> · <a href="#">Terms &amp; Conditions</a></span></div>
     </div>
   </footer>
   <script src="{prefix}js/main.js"></script>
